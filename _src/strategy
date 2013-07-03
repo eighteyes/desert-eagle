@@ -1,0 +1,124 @@
+Strategy:
+User Needs:
+  Fan:
+
+  Participate in creative endeavor
+  Converse with fans / artists about music
+  Get exclusive access to material / tracks
+  Get free tracks / patches
+  Download high quality segments for own usage
+  Compete with others for recognition
+
+  Artist:
+
+  Exploit noodles
+  Recieve written feedback about music tracks
+  Learn from crowd about effective parts
+  Make money from crowd engagement / subscriptions
+  Make better / proven music
+  Discovery through portal
+
+Product Objectives:
+  Connect fans with artists in meaningful way
+  Make a percentage of all transactions through product
+  Platform for artist discovery
+
+Metric Goals:
+  User signups
+  Engagement
+  Buying
+
+Functionality:
+  Sounds:
+    Play sound, search sound, make snippet, download snippet
+  Cheese:
+    Buy, Spend (snippets, patches)
+
+Information:
+  Sounds:
+    Available, context information, tags, date
+  Snippets:
+   Popularity, length, tags, comments
+  Users:
+    Activity, currently listening
+
+Scope:
+Content Management System
+
+CMS will upload, edit info, convert to mp3, admin user engagements, promote users to have more abilities (Ninjas).
+
+Good Sound Extrapolation
+
+GSE will display waveforms, display engagments, allow users to add engagements, spend cheese, comment on own or others engagement segments, download segments and play / search audio tracks. Controls and a visual preview (using Soundline) of the next tracks is available. Going back is only a control.
+
+Soundline
+
+Soundline will display a collection of tracks, ordered by date. Tracks which exist in the same month will be displayed in a horizontally extending line. Tracks which are synchronized will be displayed as multiple horizontal lines in a single vertical space.
+Tracks can also be tagged and searched for by tag.
+
+v2: Fans can see other fans listening / commenting in real time.
+
+User Analytics
+
+Find high engagement segments. User time since login, frequency, time of sessions.
+
+User Activity
+
+To build user engagement, the activities of others in their designated regions will be collected and displayed.
+
+User Types:
+Fans:
+Buy cheese, spend cheese, comment and listen freely.
+
+Ninjas:
+Can delete segments from tracks. Administration queue. Can remove abusive comments.
+
+Buyers:
+'Own' a specific segment, removing all other claims of likes. Enables full quality download of segment. Can trade in Marketplace (v3)
+
+Game Mechanics:
+Buy sections with cheese
+Can take top spot by spending original + payoff all.
+Ex: User 1 has 10 second segment with Users 2 and 3 owning 5 second segments in it. Total price is 20 going to User 1, 5 to 2 and 3, and 10 to system, for 40 total.
+
+
+Specifications:
+
+Overview Area:
+List of sounds, ordered chronologically, each unit of time can be expanded to the sound detail view. Overview can be sorted by tags.
+
+Sound Detail:
+Current sound in detail. Waveform + displayed above line, user meta underneath / above. Display tags. Download. Go to next / previous. Expand to display multiple synched tracks. Can download specific section as aiff, whole track as mp3.
+
+Site Meta Sidebar:
+Cheese:
+Buy, current spending
+Content Meta:
+My segments
+Popular segments
+Recently Discovered segments
+New Sounds
+Footer:
+Copyright Info, link to DE.
+
+Content Requirements:
+Sounds :
+Mp3, aiff, Tags, dates, pictures
+User-generated :
+Comments, avatars, names, sectins
+
+Structure:
+Interaction Design / Architecture
+Sound groups depend on organization by date.
+Large dots will indicate the root node of the sound group and extend in a line off to the right.
+Sounds can be organized by date, level of engagement, or tags.
+Navigation - Sounds will expand into the detail pane in place.
+One Sound contains many Sections
+Sections are miniturized in the overview, and expanded in the detail view.
+Sections will always have color, and the importance of a given section highlight will be determined by line weight. First finders will be given top priority, only overtaken by buyers.
+
+
+Skeleton:
+Information Design, Interface, Navigation
+Surface:
+Sensory edsign
