@@ -11,67 +11,60 @@ function drawLines(data){
     lineData.push({ y: Math.round(t*10000)/100, x: i });
   });
 
-  var line = d3.svg.line()
-    .x(function(d) { return d.x })
-    .y(function(d) { return d.y })
-    .interpolate('linear')
-
-  var svg = d3.select('body')
+  var svg = d3.select('.activePlay')
     .insert('svg', ":first-child")
     .attr({
       "width": 1000,
       "height" : 200
     })
 
-  var path = svg
-    .append('path')
-    .attr({
-      'd' : line(lineData),
-      'stroke': 'blue',
-      'stroke-width': 0.25,
-      'fill':'none',
-    })
-  ;
-
   var bds = svg.selectAll('div')
     .data(lineData)
       .enter().append('rect')
-      .style("pointer-events", "all")
       .attr({
         'x' : function(d, i) { return i; },
-        'y' : 0,
+        'y' : 10,
         'width' : 2,
         'height' : function(d) { return d.y },
         'fill' : preColor
       });
+}
 
-  var transition = d3.transition()
-    .duration(1000)
-    .attr('height', 100)
-    .ease('linear');
+function drawSection(data){
 
+  var svg = d3.select('.activePlay')
+   .insert('svg', ":first-child")
+    .attr({
+      "width": 1000,
+      "height" : 100
+    });
 
-    var playHead = function() {
-      var bar = d3.select(this);
-      bar.transition().attr({
-        'height': 100,
-        'fill': 'rgba(200,200,255,1)'
+    var data = [data];
+
+  var box = svg.selectAll('div')
+    .data(data)
+      .enter().append('rect')
+      .attr({
+        'x': function(d) {return d.start},
+        'y':0,
+        'width':100,
+        'height':15,
+        'fill': "rgb(100,100,100)"
       });
-    }
 
-    var leaveHead = function() {
-      var bar = d3.select(this);
-      var h = bar.attr('height');
-      bar.transition().attr({
-        'height': function (d) { return d.y },
-        'fill': 'rgba(100,100,155,1)'
-      });
-    }
-
-
-    d3.selectAll('svg rect')
-      .on('mouseover', playHead)
-      .on('mouseout', leaveHead);
+  var word = svg.selectAll('div')
+    .data(data)
+    .enter().append('text')
+    .attr({
+      'fill': 'rgb(0,0,0)',
+      'width' : 100,
+      'x' : 10,
+      'y' : 10,
+      'height' : 100,
+      'stroke' : 'black',
+      'font-size': 16
+    })
+    .text('Fuck');
 }
 
  function doThing() {
@@ -105,6 +98,6 @@ d3.json('http://localhost:8000/song', function(data){
 });
 
 d3.json('http://localhost:8000/region', function(data){
-  drawSections(data);
+  drawSection(data);
 })
 

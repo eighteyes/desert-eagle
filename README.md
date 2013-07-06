@@ -1,4 +1,4 @@
 desert-eagle
 ============
 
-more experiments
+Audio Project using Node, d3 and Angular.
