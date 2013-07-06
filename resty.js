@@ -5,8 +5,8 @@ var http = require('http')
 var routes = {
   user : require('./fakes').user,
   song : require('./fakes').song,
+  region : require('./fakes').region,
   songs : null,
-  region : null,
   listening : null,
   userSong : null
 };

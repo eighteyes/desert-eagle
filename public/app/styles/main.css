@@ -1,3 +1,6 @@
 /* Will be compiled down to a single stylesheet with your sass files */
 
 .soundline { stroke: #666; }
+svg {
+  pointer-events: all;
+}
