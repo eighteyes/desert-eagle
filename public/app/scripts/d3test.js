@@ -23,7 +23,8 @@ var styles = {
   sound: {
     preColor : 'rgb(200,200,255)',
     postColor : 'rgb(100,100,200)',
-    playColor : 'rgb(255,100,100)'
+    playColor : 'rgb(255,100,100)',
+    height:100
   },
   region: {
     height: 10,
@@ -56,18 +57,17 @@ function drawSong(data){
 
   var songLine = svg.append('g')
     .attr({
-      "y" : style.song.height / 2
-      "width": song.length,
-      "height" : style.song.height
+      "transform" : "translate(0, " + styles.sound.height + ")",
+      "width": styles.viewport.width,
+      "height" : styles.sound.height
     });
 
-  var bds = svg.selectAll('div')
+  songLine.selectAll('rect')
   .data(lineData)
   .enter()
     .append('rect')
     .attr({
       'x' : function(d, i) { return i },
-      'y' : 10,
       'width' : 2,
       'height' : function(d) { return d.y },
       'fill' : styles.sound.preColor
