@@ -1,25 +1,24 @@
 var http = require('http')
   , util = require('util');
 
-
-var routes = {
-  user : require('./fakes').user,
-  song : require('./fakes').song,
-  region : require('./fakes').region,
-  songs : null,
-  listening : null,
-  userSong : null
-};
-
-
 var server = http.createServer( function ( req, res ) {
+
+ // console.log( "CACHE", require.resolve('./fakes'), require.cache[require.resolve('./fakes')] );
+
+  var routes = {
+    user : require('./fakes').user,
+    song : require('./fakes').song,
+    regions : require('./fakes').regions,
+    songs : null,
+    listening : null,
+    userSong : null
+  };
 
   var obj = {};
 
-  console.log("Request", req.url);
   for ( var key in routes ){
     if ( req.url.match(key)) {
-      console.log('key:', key);
+      // console.log('key:', key);
       obj = routes[key];
     }
   }
@@ -35,6 +34,7 @@ var server = http.createServer( function ( req, res ) {
 
   res.write( response );
   res.end();
+
 });
 
 server.timeout = 10000;

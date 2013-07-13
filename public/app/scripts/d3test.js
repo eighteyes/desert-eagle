@@ -1,11 +1,13 @@
-d3.json('http://localhost:8000/song', function(data){
+/*jslint white: false, loopfunc: false */
+
+d3.json('http://localhost:8000/song', function (data) {
   console.log('songdata:', data);
   drawSong(data);
 });
 
-d3.json('http://localhost:8000/region', function(data){
-  console.log('regiondata:', data)
-  drawSection(data);
+d3.json('http://localhost:8000/regions', function (data) {
+  console.log('regiondata:', data);
+  drawRegions(data);
 });
 
 var lineData = [];
@@ -57,9 +59,8 @@ function drawSong(data){
 
   var songLine = svg.append('g')
     .attr({
-      "transform" : "translate(0, " + styles.sound.height + ")",
-      "width": styles.viewport.width,
-      "height" : styles.sound.height
+      'class': 'songLine',
+      'transform' : 'translate(0,' + styles.sound.height + ')'
     });
 
   songLine.selectAll('rect')
@@ -74,61 +75,73 @@ function drawSong(data){
     });
 }
 
-function drawSection(data){
+function drawRegions(data){
 
-  var svg = d3.select('.activeRegions')
-  .insert('svg', ":first-child")
-  .attr({
-    "width": song.length,
-    "height" : 100
-  });
-
-  var data = [data];
-
-  var y = d3.scale.linear()
-  .domain([0, styles.region.height])
-  .range( [styles.region.height, 0]);
-
-  var boxLoc = {
-    x : function(d) {return d.start},
-    y : y(10)
-  };
-
-  var wordBounds = svg.selectAll('div')
-  .data(data)
-  .enter().append('text')
+  var section = svg.append('g')
     .attr({
-      'fill': 'rgb(200,200,200)',
-      'x' : boxLoc.x,
-      'y' : boxLoc.y + 9,
-      'font-size': 10
-    })
-    .text('Fuck');
+      'class' : 'region',
+      'transform' : 'translate(0,' + styles.sound.height + ')',
+      'width': styles.viewport.width,
+      'height': styles.viewport.height - styles.sound.height
+    });
+
+    section.selectAll('rect')
+    .data(data)
+    .enter()
+      .append('rect')
+    .attr({
+      'x': function(d) {
+        return d.start;
+      },
+      'y': function(d){
+        return -d.depth * styles.region.height;
+      },
+      'width': function(d) {
+        return d.end - d.start;
+      },
+      'height': styles.region.height,
+      'fill': styles.region.defaultColor
+    });
 
 
-  console.log(wordWidth);
+  // var boxLoc = {
+  //   x : function(d) {return d.start;},
+  //   y : y(10)
+  // };
 
-  var box = svg.selectAll('div')
-  .data(data)
-  .enter().append('rect')
-  .attr({
-    'x': boxLoc.x,
-    'y':boxLoc.y,
-    'width':wordWidth,
-    'height':10,
-    'fill': "rgb(100,100,100)"
-  });
+  // var wordBounds = svg.selectAll('div')
+  // .data(data)
+  // .enter().append('text')
+  //   .attr({
+  //     'fill': 'rgb(200,200,200)',
+  //     'x' : boxLoc.x,
+  //     'y' : boxLoc.y + 9,
+  //     'font-size': 10
+  //   })
+  //   .text('Fuck');
 
-  var word = svg.selectAll('div')
-  .data(data)
-  .enter().append('text')
-  .attr({
-    'fill': 'rgb(200,200,200)',
-    'x' : boxLoc.x,
-    'y' : boxLoc.y + 9,
-    'font-size': 10
-  })
-  .text('Fuck');
+
+  // var box = svg.selectAll('div')
+  // .data(data)
+  // .enter().append('rect')
+  // .attr({
+  //   'x': boxLoc.x,
+  //   'y':boxLoc.y,
+  //   'width':wordWidth,
+  //   'height':10,
+  //   'fill': 'rgb(100,100,100)'
+  // });
+
+  // var word = svg.selectAll('div')
+  // .data(data)
+  // .enter().append('text')
+  // .attr({
+  //   'fill': 'rgb(200,200,200)',
+  //   'x' : boxLoc.x,
+  //   'y' : boxLoc.y + 9,
+  //   'font-size': 10
+  // })
+  // .text('Fuck');
 }
 
 function drawMarks(){
