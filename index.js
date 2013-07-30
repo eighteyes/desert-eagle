@@ -2,12 +2,15 @@ var express = require('express')
   , mongoose = require('mongoose')
   , restish = require('restish');
 
+  var manyRegions = require('./fakes').regions;
+  var regions = manyRegions();
+
 options = {
   port: 8000,
   routes : {
     user : require('./fakes').user,
     song : require('./fakes').song,
-    regions : require('./fakes').regions,
+    regions : regions,
     songs : null,
     listening : null,
     userSong : null
