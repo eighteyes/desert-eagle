@@ -7,10 +7,11 @@ var str = "abcdefghijklmnopqrstuvwxyz";
 
 for (var i = 1; i <= count; i++) {
 
-  s1 = str[ Math.round(Math.random() * 25 ) ];
 
   n1 = Math.round(Math.random() * 1000);
   n2 = Math.round(Math.random() * 1000);
+
+  s1 = str[ Math.round(Math.random() * 25 ) ] + n1;
 
   var start = Math.min(n1, n2);
   var end = Math.max(n1, n2);
