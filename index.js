@@ -2,9 +2,10 @@ var express = require('express')
   , mongoose = require('mongoose')
   , restish = require('restish')
   , fs = require('fs')
+  , sounder = require('sounder')
 
-  var manyRegions = require('./fakes').regions;
-  var regions = manyRegions();
+var manyRegions = require('./fakes').regions;
+var regions = manyRegions();
 
 options = {
   port: 8000,
@@ -16,7 +17,7 @@ options = {
     listening : null,
     userSong : null
   }
-}
+};
 
 var app = express();
 
@@ -27,15 +28,18 @@ app.get('/', function(req, res){
   res.writeHead(200, {
     "CACHE-CONTROL" : "no-cache"
   });
-  console.log("lol" )
   res.sendFile('index.html');
 });
+
+app.get('/info/:sound', function( req, res ){
+  sounder.readSound( req.params.sound + '.aiff', 'audio/aiff', function(err, sound) {
+    res.json( sound );
+  });
+})
 
 app.get('/audio/:sound', function(req, res) {
     var filePath = 'audio/mp3/' + req.params.sound + '.mp3';
     var stat = fs.statSync(filePath);
-
-
 
     res.writeHead(200, {
        "Content-Type": "audio/mpeg",
