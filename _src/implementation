@@ -1,3 +1,28 @@
 json
 sound: { file: length: waveData: syncWith : date: title: notes:  }
 group (temp) :{ sounds: [] }
+
+API
+sound/:id/info
+{
+  fileName, title, length, date, notes, tags
+}
+sound/:id/wave
+{
+  waveData
+}
+sound/:id/region
+{
+  start, end, depth, userName, userId
+}
+
+user/:id/info
+user/:id/regions
+
+Controllers -
+
+Sound
+Cheese
+User
+
+

@@ -1,6 +1,6 @@
 /*jslint white: false, loopfunc: false */
 
-d3.json('http://localhost:8000/song', function (data) {
+d3.json('http://localhost:8000/sound/', function (data) {
   console.log('songdata:', data);
   drawSong(data);
 });

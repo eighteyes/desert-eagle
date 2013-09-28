@@ -31,13 +31,14 @@ app.get('/', function(req, res){
   res.sendFile('index.html');
 });
 
-app.get('/info/:sound', function( req, res ){
+app.get('/sound/:sound/wave/', function( req, res ){
+  //needs lookup
   sounder.readSound( req.params.sound + '.aiff', 'audio/aiff', function(err, sound) {
     res.json( sound );
   });
 })
 
-app.get('/audio/:sound', function(req, res) {
+app.get('/sound/:sound/stream', function(req, res) {
     var filePath = 'audio/mp3/' + req.params.sound + '.mp3';
     var stat = fs.statSync(filePath);
 
